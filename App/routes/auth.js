@@ -16,10 +16,16 @@ router.get('/signin', authProvider.login({
     successRedirect: '/'
 }));
 
-router.get('/acquireToken', authProvider.acquireToken({
+router.get('/acquireUserReadToken', authProvider.acquireToken({
     scopes: ['User.Read'],
     redirectUri: REDIRECT_URI,
     successRedirect: '/users/profile'
+}));
+
+router.get('/acquireBookingsReadWriteToken', authProvider.acquireToken({
+    scopes: ['BookingsAppointment.ReadWrite.All'],
+    redirectUri: REDIRECT_URI,
+    successRedirect: '/bookings'
 }));
 
 router.post('/redirect', authProvider.handleRedirect());

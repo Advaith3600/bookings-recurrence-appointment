@@ -30,10 +30,16 @@ const msalConfig = {
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const POST_LOGOUT_REDIRECT_URI = process.env.POST_LOGOUT_REDIRECT_URI;
 const GRAPH_ME_ENDPOINT = process.env.GRAPH_API_ENDPOINT + "v1.0/me";
+const GRAPH_STAFF_ENDPOINT = process.env.GRAPH_API_ENDPOINT + 'v1.0/solutions/bookingBusinesses/' + process.env.BOOKINGS_ID + '/staffMembers'
+const GRAPH_SERVICES_ENDPOINT = process.env.GRAPH_API_ENDPOINT + 'v1.0/solutions/bookingBusinesses/' + process.env.BOOKINGS_ID + '/services'
+const GRAPH_CUSTOM_QUESTIONS_ENDPOINT = process.env.GRAPH_API_ENDPOINT + 'v1.0/solutions/bookingBusinesses/' + process.env.BOOKINGS_ID + '/customQuestions'
 
 module.exports = {
     msalConfig,
     REDIRECT_URI,
     POST_LOGOUT_REDIRECT_URI,
-    GRAPH_ME_ENDPOINT
+    GRAPH_ME_ENDPOINT,
+    GRAPH_STAFF_ENDPOINT,
+    GRAPH_SERVICES_ENDPOINT,
+    GRAPH_CUSTOM_QUESTIONS_ENDPOINT
 };

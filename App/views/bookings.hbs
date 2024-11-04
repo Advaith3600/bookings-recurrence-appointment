@@ -1,0 +1,45 @@
+<form id="bookings-form">
+    <table>
+        <thead>
+            <th></th>
+            <th>Staff Name</th>
+            <th>Email</th>
+        </thead>
+        <tbody>
+            {{#each staff}}
+            <tr>
+                <td><input type="checkbox" name="staff" value="{{this.id}}" class="staff-check" /></td>
+                <td>{{this.displayName}}</td>
+                <td>{{this.emailAddress}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <div>
+      <label for="start_date">Start Date</label>
+      <input type="date" name="start_date" id="start_date" />
+    </div>
+
+    <div>
+      <label for="end_date">End Date</label>
+      <input type="date" name="end_date" id="end_date" />
+    </div>
+
+    <div>
+      <label for="start_time">Start Time</label>
+      <input type="time" name="start_time" id="start_time" />
+    </div>
+
+    <div>
+      <label for="end_time">End Time</label>
+      <input type="time" name="end_time" id="end_time" />
+    </div>
+
+    <button type="submit">Book</button>
+</form>
+
+<br>
+<a href="/">Go back</a>
+
+<script src"/js/bookings.js"></script>
