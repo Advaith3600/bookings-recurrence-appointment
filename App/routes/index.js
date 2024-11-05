@@ -11,6 +11,7 @@ router.get('/', function (req, res, next) {
         title: 'MSAL Node & Express Web App',
         isAuthenticated: req.session.isAuthenticated,
         username: req.session.account?.username,
+        baseURL: process.env.BASE_URL
     });
 });
 
