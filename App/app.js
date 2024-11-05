@@ -47,11 +47,11 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('base', process.env.BASE_URL);
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
-app.use('/bookings', bookingsRouter);
+const BASE_URL = (process.env.BASE_URL || '/').replace(/\/$/, '');
+app.use(BASE_URL + '/', indexRouter);
+app.use(BASE_URL + '/users', usersRouter);
+app.use(BASE_URL + '/auth', authRouter);
+app.use(BASE_URL + '/bookings', bookingsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
