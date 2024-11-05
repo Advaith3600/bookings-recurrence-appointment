@@ -41,13 +41,14 @@ handlebarsHelpers.registerHelpers();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+const BASE_URL = (process.env.BASE_URL || '/').replace(/\/$/, '');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(BASE_URL, express.static(path.join(__dirname, 'public')));
 
-const BASE_URL = (process.env.BASE_URL || '/').replace(/\/$/, '');
 app.use(BASE_URL + '/', indexRouter);
 app.use(BASE_URL + '/users', usersRouter);
 app.use(BASE_URL + '/auth', authRouter);

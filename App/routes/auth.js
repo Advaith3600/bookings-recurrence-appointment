@@ -10,22 +10,24 @@ const { REDIRECT_URI, POST_LOGOUT_REDIRECT_URI } = require('../authConfig');
 
 const router = express.Router();
 
+const BASE_URL = (process.env.BASE_URL || '/').replace(/\/$/, '');
+
 router.get('/signin', authProvider.login({
     scopes: [],
     redirectUri: REDIRECT_URI,
-    successRedirect: '/'
+    successRedirect: BASE_URL + '/'
 }));
 
 router.get('/acquireUserReadToken', authProvider.acquireToken({
     scopes: ['User.Read'],
     redirectUri: REDIRECT_URI,
-    successRedirect: '/users/profile'
+    successRedirect: BASE_URL + '/users/profile'
 }));
 
 router.get('/acquireBookingsReadWriteToken', authProvider.acquireToken({
     scopes: ['BookingsAppointment.ReadWrite.All'],
     redirectUri: REDIRECT_URI,
-    successRedirect: '/bookings'
+    successRedirect: BASE_URL + '/bookings'
 }));
 
 router.post('/redirect', authProvider.handleRedirect());
