@@ -33,6 +33,7 @@ const GRAPH_ME_ENDPOINT = process.env.GRAPH_API_ENDPOINT + "v1.0/me";
 const GRAPH_STAFF_ENDPOINT = process.env.GRAPH_API_ENDPOINT + 'v1.0/solutions/bookingBusinesses/' + process.env.BOOKINGS_ID + '/staffMembers'
 const GRAPH_SERVICES_ENDPOINT = process.env.GRAPH_API_ENDPOINT + 'v1.0/solutions/bookingBusinesses/' + process.env.BOOKINGS_ID + '/services'
 const GRAPH_CUSTOM_QUESTIONS_ENDPOINT = process.env.GRAPH_API_ENDPOINT + 'v1.0/solutions/bookingBusinesses/' + process.env.BOOKINGS_ID + '/customQuestions'
+const GRAPH_CREATE_BOOKING_APPOINTMENT_ENDPOINT = process.env.GRAPH_API_ENDPOINT + 'v1.0/solutions/bookingBusinesses/' + process.env.BOOKINGS_ID + '/appointments'
 
 module.exports = {
     msalConfig,
@@ -41,5 +42,6 @@ module.exports = {
     GRAPH_ME_ENDPOINT,
     GRAPH_STAFF_ENDPOINT,
     GRAPH_SERVICES_ENDPOINT,
-    GRAPH_CUSTOM_QUESTIONS_ENDPOINT
+    GRAPH_CUSTOM_QUESTIONS_ENDPOINT,
+    GRAPH_CREATE_BOOKING_APPOINTMENT_ENDPOINT
 };

@@ -14,7 +14,7 @@ const isAuthenticated = require('../auth/isAuthenticated');
 router.get('/id',
     isAuthenticated, // check if user is authenticated
     async function (req, res, next) {
-        res.render('id', { idTokenClaims: req.session.account.idTokenClaims });
+        res.render('id', { idTokenClaims: req.session.account.idTokenClaims, baseURL: process.env.BASE_URL });
     }
 );
 
@@ -23,7 +23,7 @@ router.get('/profile',
     async function (req, res, next) {
         try {
             const graphResponse = await fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
-            res.render('profile', { profile: graphResponse });
+            res.render('profile', { profile: graphResponse, baseURL: process.env.BASE_URL });
         } catch (error) {
             next(error);
         }

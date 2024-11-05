@@ -17,6 +17,8 @@ var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var bookingsRouter = require('./routes/bookings');
 
+const handlebarsHelpers = require('./handlebars');
+
 // initialize express
 var app = express();
 
@@ -34,6 +36,7 @@ var app = express();
     }
 }));
 
+handlebarsHelpers.registerHelpers();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
