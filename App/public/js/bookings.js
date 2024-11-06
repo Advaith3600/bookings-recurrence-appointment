@@ -77,6 +77,15 @@ function combineDateAndTime(date, time) {
   return date;
 }
 
+function formatDateForDisplay(date) {
+  return new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+}
+
 const progressContainer = document.getElementById('progress-container');
 const progressCount = document.getElementById('progress-count');
 const totalCount = document.getElementById('total-count');
@@ -101,10 +110,16 @@ document.getElementById('bookings-form').addEventListener('submit', function(e) 
   if (selectedService && selectedService.customQuestions) {
     selectedService.customQuestions.forEach(questionRef => {
       const select = document.getElementById(`question_${questionRef.questionId}`);
+      const question = customQuestions.find(q => q.id === questionRef.questionId);
       if (select) {
         customQuestionAnswers.push({
           questionId: questionRef.questionId,
-          selectedOptions: [select.value] // For radio buttons, we only have one selected option
+          answer: select.value,
+          selectedOptions: [select.value],
+          isRequired: questionRef.isRequired,
+          question: question.displayName,
+          answerInputType: question.answerInputType,
+          answerOptions: question.answerOptions
         });
       }
     });
@@ -140,6 +155,8 @@ document.getElementById('bookings-form').addEventListener('submit', function(e) 
   submitButton.disabled = true;
   submitButton.textContent = 'Processing Bookings...';
 
+  const customerId = document.getElementById('customer').value;
+
   dates.forEach(async date => {
     const bookingData = {
       serviceId,
@@ -151,11 +168,18 @@ document.getElementById('bookings-form').addEventListener('submit', function(e) 
       endDateTime: {
         "dateTime": formatDateWithTimezone(combineDateAndTime(date, endTime)),
         "timeZone": 'UTC'
-      }
+      },
+      customers: [
+        {
+          "@odata.type": "#microsoft.graph.bookingCustomerInformation",
+          customerId,
+          customQuestionAnswers
+        }
+      ]
     };
 
     try {
-      await axios.post('/bookings/create', bookingData);
+      await axios.post('bookings/create', bookingData);
       success++;
       successCount.textContent = success;
     } catch (e) {
