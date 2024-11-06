@@ -33,7 +33,7 @@
             <select id="customer" name="customer">
                 <option value="">Select a customer...</option>
                 {{#each customers}}
-                <option value="{{this.id}}">{{this.displayName}}</option>
+                <option value="{{this.id}}|||{{this.displayName}}">{{this.displayName}}</option>
                 {{/each}}
             </select>   
         </div>

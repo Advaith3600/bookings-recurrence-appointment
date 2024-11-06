@@ -155,7 +155,7 @@ document.getElementById('bookings-form').addEventListener('submit', function(e) 
   submitButton.disabled = true;
   submitButton.textContent = 'Processing Bookings...';
 
-  const customerId = document.getElementById('customer').value;
+  const [customerId, customerName] = document.getElementById('customer').value.split('|||');
 
   dates.forEach(async date => {
     const bookingData = {
@@ -173,6 +173,7 @@ document.getElementById('bookings-form').addEventListener('submit', function(e) 
         {
           "@odata.type": "#microsoft.graph.bookingCustomerInformation",
           customerId,
+          name: customerName,
           customQuestionAnswers
         }
       ]
