@@ -173,7 +173,7 @@ document.getElementById('bookings-form').addEventListener('submit', function(e) 
         {
           "@odata.type": "#microsoft.graph.bookingCustomerInformation",
           customerId,
-          name: customerName,
+          // name: customerName,
           customQuestionAnswers
         }
       ]
