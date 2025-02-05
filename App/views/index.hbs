@@ -1,14 +1,16 @@
-<h1>{{title}}</h1>
-{{#if isAuthenticated }}
-<p>Hi {{username}}!</p>
-<a href="users/id">View ID token claims</a>
-<br>
-<a href="auth/acquireUserReadToken">User Info</a>
-<br>
-<a href="auth/acquireBookingsReadWriteToken">Make appointment</a>
-<br>
-<a href="auth/signout">Sign out</a>
-{{else}}
-<p>Welcome to {{title}}</p>
-<a href="auth/signin">Sign in</a>
-{{/if}}
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; min-height: 100dvh;">
+  <h1 style="margin-top: 0;">{{title}}</h1>
+  {{#if isAuthenticated }}
+  <p>Hi {{username}}!</p>
+  <a href="users/id">View ID token claims</a>
+  <br>
+  <a href="auth/acquireUserReadToken">User Info</a>
+  <br>
+  <a href="auth/acquireBookingsReadWriteToken">Make appointment</a>
+  <br>
+  <a href="auth/signout">Sign out</a>
+  {{else}}
+  <p>Welcome to {{title}}</p>
+  <a href="auth/signin">Sign in</a>
+  {{/if}}
+</div>
